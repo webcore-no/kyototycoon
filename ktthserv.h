@@ -275,7 +275,7 @@ class ThreadedServer : public kc::Thread {
       log(Logger::ERROR, "socket error: expr=%s msg=%s", expr_.c_str(), sock_.error());
       return false;
     }
-    log(Logger::SYSTEM, "server socket opened: expr=%s timeout=%.1f", expr_.c_str(), timeout_);
+    log(Logger::SYSTEM, "server socket opened: expr=%s timeout=%.1f", sock_.expression().c_str(), timeout_);
     if (!poll_.open()) {
       log(Logger::ERROR, "poller error: msg=%s", poll_.error());
       sock_.close();

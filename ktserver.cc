@@ -2938,7 +2938,7 @@ static int32_t run(int argc, char** argv) {
       dbpaths.push_back(argv[i]);
     }
   }
-  if (port < 1 || thnum < 1 || mport < 1) usage();
+  if (port < 0 || thnum < 1 || mport < 1) usage();
   if (thnum > THREADMAX) thnum = THREADMAX;
   if (dbpaths.empty()) {
     if (pldbpath) usage();

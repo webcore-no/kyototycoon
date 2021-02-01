@@ -785,6 +785,8 @@ bool ServerSocket::open(const std::string& expr) {
   }
   char addr[NAMEBUFSIZ];
   int32_t port;
+  int len = sizeof(struct sockaddr);
+
   parseaddr(expr.c_str(), addr, &port);
   if (*addr == '\0') {
     std::sprintf(addr, "0.0.0.0");
@@ -792,7 +794,7 @@ bool ServerSocket::open(const std::string& expr) {
     servseterrmsg(core, "invalid address expression");
     return false;
   }
-  if (port < 1 || port > kc::INT16MAX) {
+  if (port < 0 || port > kc::INT16MAX) {
     servseterrmsg(core, "invalid address expression");
     return false;
   }
@@ -812,7 +814,7 @@ bool ServerSocket::open(const std::string& expr) {
   }
   int32_t optint = 1;
   ::setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, (char*)&optint, sizeof(optint));
-  if (::bind(fd, (struct sockaddr*)&sain, sizeof(sain)) != 0) {
+  if (::bind(fd, (struct sockaddr*)&sain, len) != 0) {
     servseterrmsg(core, "bind failed");
     ::close(fd);
     return false;
@@ -833,6 +835,14 @@ bool ServerSocket::open(const std::string& expr) {
   core->chan = new SecChannel;
 #endif
   core->expr.clear();
+
+  if (::getsockname(fd, (struct sockaddr*)&sain, (socklen_t*)&len) != 0) {
+    servseterrmsg(core, "getsockname failed");
+    ::close(fd);
+    return false;
+  }
+
+  port = ntohs(sain.sin_port);
   kc::strprintf(&core->expr, "%s:%d", addr, port);
   core->aborted = false;
   return true;
