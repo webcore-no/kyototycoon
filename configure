@@ -2268,8 +2268,14 @@ fi
 
 if test "$enable_lua" = "yes"
 then
-  luaver=`lua -e 'v = string.gsub(_VERSION, ".* ", ""); print(v)'`
   MYCPPFLAGS="$MYCPPFLAGS -D_MYLUA"
+  if test -n "$LUA_INCDIR" -o -n "$LUALIB"
+  then
+	  MYCPPFLAGS="$MYCPPFLAGS -I$LUA_INCDIR"
+	  MYLDFLAGS="$MYLDFLAGS $LUALIB"
+	  CPATH="$CPATH:$LUA_INCDIR"
+  else
+  luaver=`lua -e 'v = string.gsub(_VERSION, ".* ", ""); print(v)'`
   MYCPPFLAGS="$MYCPPFLAGS -I/usr/include/lua$luaver -I/usr/local/include/lua$luaver"
   MYCPPFLAGS="$MYCPPFLAGS -I/usr/include/lua -I/usr/local/include/lua"
   MYLDFLAGS="$MYLDFLAGS -L/usr/lib/lua$luaver -L/usr/local/lib/lua$luaver"
@@ -2280,6 +2286,7 @@ then
   LIBRARY_PATH="$LIBRARY_PATH:/usr/lib/lua:/usr/local/lib/lua"
   CPATH="$CPATH:/usr/include/lua$luaver:/usr/local/include/lua$luaver"
   CPATH="$CPATH:/usr/include/lua:/usr/local/include/lua"
+  fi
   enables="$enables (lua)"
 fi
 
@@ -4113,13 +4120,22 @@ fi
 
 if test "$enable_lua" = "yes"
 then
+  if test -n "$LUALIB"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in $LUALIB" >&5
+$as_echo_n "checking for main in $LUALIB... " >&6; }
+  else
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -llua" >&5
 $as_echo_n "checking for main in -llua... " >&6; }
+  fi
 if ${ac_cv_lib_lua_main+:} false; then :
   $as_echo_n "(cached) " >&6
 else
   ac_check_lib_save_LIBS=$LIBS
-LIBS="-llua  $LIBS"
+  if test -n "$LUALIB";then
+    LIBS="$LUALIB $LIBS"
+  else
+    LIBS="-llua  $LIBS"
+  fi
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
@@ -4144,7 +4160,11 @@ fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_lua_main" >&5
 $as_echo "$ac_cv_lib_lua_main" >&6; }
 if test "x$ac_cv_lib_lua_main" = xyes; then :
-  MYCMDLIBS="$MYCMDLIBS -llua"
+  if test -n "$LUALIB";then
+	  MYCMDLIBS="$MYCMDLIBS $LUALIB"
+  else
+      MYCMDLIBS="$MYCMDLIBS -llua"
+  fi
 fi
 
   as_ac_Lib=`$as_echo "ac_cv_lib_lua$luaver''_main" | $as_tr_sh`
@@ -4182,8 +4202,8 @@ $as_echo "$ac_res" >&6; }
 if eval test \"x\$"$as_ac_Lib"\" = x"yes"; then :
   MYCMDLIBS="$MYCMDLIBS -llua$luaver"
 fi
-
 fi
+
 if test "$enable_sec_openssl" = "yes"
 then
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lcrypto" >&5

@@ -30,6 +30,10 @@ Kyoto Tycoon was written by FAL Labs.  You can contact the author
 by e-mail to `info@fallabs.com'.  This fork is maintained by
 Cloudflare (github.com/cloudflare).
 
+For compiling with luajit:
+
+LUA_INCDIR="/path/to/include" LUALIB="-L/path/to/lib -lluajit-5.1" ./configure --enable-lua
+
 
 Thanks.
 
