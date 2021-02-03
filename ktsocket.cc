@@ -268,7 +268,7 @@ bool Socket::open(const std::string& expr, bool secure,
   char addr[NAMEBUFSIZ];
   int32_t port;
   parseaddr(expr.c_str(), addr, &port);
-  if (kc::atoi(addr) < 1 || port < 1 || port > kc::INT16MAX) {
+  if (kc::atoi(addr) < 1 || port < 1 || port > kc::UINT16MAX) {
     sockseterrmsg(core, "invalid address expression");
     return false;
   }
