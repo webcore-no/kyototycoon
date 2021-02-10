@@ -241,7 +241,8 @@ static void dberrprint(kt::RemoteDB* db, const char* info) {
 // parse arguments of report command
 static int32_t runreport(int argc, char** argv) {
   bool argbrk = false;
-  const char* host = "";
+  const char* hbuf = kc::getenv("KTHOST");
+  const char* host = hbuf ? hbuf : "127.0.0.1";
   const char* pbuf = kc::getenv("KTPORT");
   int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
@@ -291,7 +292,8 @@ static int32_t runreport(int argc, char** argv) {
 static int32_t runscript(int argc, char** argv) {
   bool argbrk = false;
   const char* proc = NULL;
-  const char* host = "";
+  const char* hbuf = kc::getenv("KTHOST");
+  const char* host = hbuf ? hbuf : "127.0.0.1";
   const char* pbuf = kc::getenv("KTPORT");
   int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
@@ -363,7 +365,8 @@ static int32_t runscript(int argc, char** argv) {
 static int32_t runtunerepl(int argc, char** argv) {
   bool argbrk = false;
   const char* mhost = NULL;
-  const char* host = "";
+  const char* hbuf = kc::getenv("KTHOST");
+  const char* host = hbuf ? hbuf : "127.0.0.1";
   const char* pbuf = kc::getenv("KTPORT");
   int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
@@ -430,7 +433,8 @@ static int32_t runtunerepl(int argc, char** argv) {
 // parse arguments of inform command
 static int32_t runinform(int argc, char** argv) {
   bool argbrk = false;
-  const char* host = "";
+  const char* hbuf = kc::getenv("KTHOST");
+  const char* host = hbuf ? hbuf : "127.0.0.1";
   const char* pbuf = kc::getenv("KTPORT");
   int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
@@ -501,7 +505,8 @@ static int32_t runinform(int argc, char** argv) {
 // parse arguments of clear command
 static int32_t runclear(int argc, char** argv) {
   bool argbrk = false;
-  const char* host = "";
+  const char* hbuf = kc::getenv("KTHOST");
+  const char* host = hbuf ? hbuf : "127.0.0.1";
   const char* pbuf = kc::getenv("KTPORT");
   int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
@@ -569,7 +574,8 @@ static int32_t runclear(int argc, char** argv) {
 // parse arguments of sync command
 static int32_t runsync(int argc, char** argv) {
   bool argbrk = false;
-  const char* host = "";
+  const char* hbuf = kc::getenv("KTHOST");
+  const char* host = hbuf ? hbuf : "127.0.0.1";
   const char* pbuf = kc::getenv("KTPORT");
   int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
@@ -646,7 +652,8 @@ static int32_t runset(int argc, char** argv) {
   bool argbrk = false;
   const char* kstr = NULL;
   const char* vstr = NULL;
-  const char* host = "";
+  const char* hbuf = kc::getenv("KTHOST");
+  const char* host = hbuf ? hbuf : "127.0.0.1";
   const char* pbuf = kc::getenv("KTPORT");
   int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
@@ -760,7 +767,8 @@ static int32_t runset(int argc, char** argv) {
 static int32_t runremove(int argc, char** argv) {
   bool argbrk = false;
   const char* kstr = NULL;
-  const char* host = "";
+  const char* hbuf = kc::getenv("KTHOST");
+  const char* host = hbuf ? hbuf : "127.0.0.1";
   const char* pbuf = kc::getenv("KTPORT");
   int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
@@ -848,7 +856,8 @@ static int32_t runremove(int argc, char** argv) {
 static int32_t runget(int argc, char** argv) {
   bool argbrk = false;
   const char* kstr = NULL;
-  const char* host = "";
+  const char* hbuf = kc::getenv("KTHOST");
+  const char* host = hbuf ? hbuf : "127.0.0.1";
   const char* pbuf = kc::getenv("KTPORT");
   int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
@@ -949,7 +958,8 @@ static int32_t runget(int argc, char** argv) {
 static int32_t runlist(int argc, char** argv) {
   bool argbrk = false;
   const char* kstr = NULL;
-  const char* host = "";
+  const char* hbuf = kc::getenv("KTHOST");
+  const char* host = hbuf ? hbuf : "127.0.0.1";
   const char* pbuf = kc::getenv("KTPORT");
   int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
@@ -1060,7 +1070,8 @@ static int32_t runlist(int argc, char** argv) {
 static int32_t runimport(int argc, char** argv) {
   bool argbrk = false;
   const char* file = NULL;
-  const char* host = "";
+  const char* hbuf = kc::getenv("KTHOST");
+  const char* host = hbuf ? hbuf : "127.0.0.1";
   const char* pbuf = kc::getenv("KTPORT");
   int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
@@ -1122,7 +1133,8 @@ static int32_t runimport(int argc, char** argv) {
 // parse arguments of vacuum command
 static int32_t runvacuum(int argc, char** argv) {
   bool argbrk = false;
-  const char* host = "";
+  const char* hbuf = kc::getenv("KTHOST");
+  const char* host = hbuf ? hbuf : "127.0.0.1";
   const char* pbuf = kc::getenv("KTPORT");
   int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
@@ -1194,7 +1206,8 @@ static int32_t runvacuum(int argc, char** argv) {
 // parse arguments of slave command
 static int32_t runslave(int argc, char** argv) {
   bool argbrk = false;
-  const char* host = "";
+  const char* hbuf = kc::getenv("KTHOST");
+  const char* host = hbuf ? hbuf : "127.0.0.1";
   const char* pbuf = kc::getenv("KTPORT");
   int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
@@ -1268,7 +1281,8 @@ static int32_t runslave(int argc, char** argv) {
 static int32_t runsetbulk(int argc, char** argv) {
   bool argbrk = false;
   std::map<std::string, std::string> recs;
-  const char* host = "";
+  const char* hbuf = kc::getenv("KTHOST");
+  const char* host = hbuf ? hbuf : "127.0.0.1";
   const char* pbuf = kc::getenv("KTPORT");
   int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
@@ -1369,7 +1383,8 @@ static int32_t runsetbulk(int argc, char** argv) {
 static int32_t runremovebulk(int argc, char** argv) {
   bool argbrk = false;
   std::vector<std::string> keys;
-  const char* host = "";
+  const char* hbuf = kc::getenv("KTHOST");
+  const char* host = hbuf ? hbuf : "127.0.0.1";
   const char* pbuf = kc::getenv("KTPORT");
   int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
@@ -1456,7 +1471,8 @@ static int32_t runremovebulk(int argc, char** argv) {
 static int32_t rungetbulk(int argc, char** argv) {
   bool argbrk = false;
   std::vector<std::string> keys;
-  const char* host = "";
+  const char* hbuf = kc::getenv("KTHOST");
+  const char* host = hbuf ? hbuf : "127.0.0.1";
   const char* pbuf = kc::getenv("KTPORT");
   int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
@@ -1544,7 +1560,8 @@ static int32_t rungetbulk(int argc, char** argv) {
 static int32_t runmatch(int argc, char** argv) {
   bool argbrk = false;
   std::vector<std::string> keys;
-  const char* host = "";
+  const char* hbuf = kc::getenv("KTHOST");
+  const char* host = hbuf ? hbuf : "127.0.0.1";
   const char* pbuf = kc::getenv("KTPORT");
   int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
@@ -1629,7 +1646,8 @@ static int32_t runmatch(int argc, char** argv) {
 static int32_t runregex(int argc, char** argv) {
   bool argbrk = false;
   std::vector<std::string> regexes;
-  const char* host = "";
+  const char* hbuf = kc::getenv("KTHOST");
+  const char* host = hbuf ? hbuf : "127.0.0.1";
   const char* pbuf = kc::getenv("KTPORT");
   int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
