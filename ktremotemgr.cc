@@ -242,7 +242,8 @@ static void dberrprint(kt::RemoteDB* db, const char* info) {
 static int32_t runreport(int argc, char** argv) {
   bool argbrk = false;
   const char* host = "";
-  int32_t port = kt::DEFPORT;
+  const char* pbuf = kc::getenv("KTPORT");
+  int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
   bool secure = false;
   const char* capath = NULL;
@@ -291,7 +292,8 @@ static int32_t runscript(int argc, char** argv) {
   bool argbrk = false;
   const char* proc = NULL;
   const char* host = "";
-  int32_t port = kt::DEFPORT;
+  const char* pbuf = kc::getenv("KTPORT");
+  int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
   bool bin = false;
   const char* swname = NULL;
@@ -362,7 +364,8 @@ static int32_t runtunerepl(int argc, char** argv) {
   bool argbrk = false;
   const char* mhost = NULL;
   const char* host = "";
-  int32_t port = kt::DEFPORT;
+  const char* pbuf = kc::getenv("KTPORT");
+  int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
   int32_t mport = kt::DEFPORT;
   uint64_t ts = kc::UINT64MAX;
@@ -428,7 +431,8 @@ static int32_t runtunerepl(int argc, char** argv) {
 static int32_t runinform(int argc, char** argv) {
   bool argbrk = false;
   const char* host = "";
-  int32_t port = kt::DEFPORT;
+  const char* pbuf = kc::getenv("KTPORT");
+  int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
   const char* swname = NULL;
   double swtime = 0;
@@ -498,7 +502,8 @@ static int32_t runinform(int argc, char** argv) {
 static int32_t runclear(int argc, char** argv) {
   bool argbrk = false;
   const char* host = "";
-  int32_t port = kt::DEFPORT;
+  const char* pbuf = kc::getenv("KTPORT");
+  int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
   const char* swname = NULL;
   double swtime = 0;
@@ -565,7 +570,8 @@ static int32_t runclear(int argc, char** argv) {
 static int32_t runsync(int argc, char** argv) {
   bool argbrk = false;
   const char* host = "";
-  int32_t port = kt::DEFPORT;
+  const char* pbuf = kc::getenv("KTPORT");
+  int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
   const char* swname = NULL;
   double swtime = 0;
@@ -641,7 +647,8 @@ static int32_t runset(int argc, char** argv) {
   const char* kstr = NULL;
   const char* vstr = NULL;
   const char* host = "";
-  int32_t port = kt::DEFPORT;
+  const char* pbuf = kc::getenv("KTPORT");
+  int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
   const char* swname = NULL;
   double swtime = 0;
@@ -754,7 +761,8 @@ static int32_t runremove(int argc, char** argv) {
   bool argbrk = false;
   const char* kstr = NULL;
   const char* host = "";
-  int32_t port = kt::DEFPORT;
+  const char* pbuf = kc::getenv("KTPORT");
+  int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
   const char* swname = NULL;
   double swtime = 0;
@@ -841,7 +849,8 @@ static int32_t runget(int argc, char** argv) {
   bool argbrk = false;
   const char* kstr = NULL;
   const char* host = "";
-  int32_t port = kt::DEFPORT;
+  const char* pbuf = kc::getenv("KTPORT");
+  int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
   const char* swname = NULL;
   double swtime = 0;
@@ -941,7 +950,8 @@ static int32_t runlist(int argc, char** argv) {
   bool argbrk = false;
   const char* kstr = NULL;
   const char* host = "";
-  int32_t port = kt::DEFPORT;
+  const char* pbuf = kc::getenv("KTPORT");
+  int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
   const char* swname = NULL;
   double swtime = 0;
@@ -1051,7 +1061,8 @@ static int32_t runimport(int argc, char** argv) {
   bool argbrk = false;
   const char* file = NULL;
   const char* host = "";
-  int32_t port = kt::DEFPORT;
+  const char* pbuf = kc::getenv("KTPORT");
+  int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
   const char* dbexpr = NULL;
   bool sx = false;
@@ -1112,7 +1123,8 @@ static int32_t runimport(int argc, char** argv) {
 static int32_t runvacuum(int argc, char** argv) {
   bool argbrk = false;
   const char* host = "";
-  int32_t port = kt::DEFPORT;
+  const char* pbuf = kc::getenv("KTPORT");
+  int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
   const char* swname = NULL;
   double swtime = 0;
@@ -1183,7 +1195,8 @@ static int32_t runvacuum(int argc, char** argv) {
 static int32_t runslave(int argc, char** argv) {
   bool argbrk = false;
   const char* host = "";
-  int32_t port = kt::DEFPORT;
+  const char* pbuf = kc::getenv("KTPORT");
+  int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
   uint64_t ts = 0;
   int32_t sid = 0;
@@ -1256,7 +1269,8 @@ static int32_t runsetbulk(int argc, char** argv) {
   bool argbrk = false;
   std::map<std::string, std::string> recs;
   const char* host = "";
-  int32_t port = kt::DEFPORT;
+  const char* pbuf = kc::getenv("KTPORT");
+  int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
   bool bin = false;
   const char* swname = NULL;
@@ -1356,7 +1370,8 @@ static int32_t runremovebulk(int argc, char** argv) {
   bool argbrk = false;
   std::vector<std::string> keys;
   const char* host = "";
-  int32_t port = kt::DEFPORT;
+  const char* pbuf = kc::getenv("KTPORT");
+  int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
   bool bin = false;
   const char* swname = NULL;
@@ -1442,7 +1457,8 @@ static int32_t rungetbulk(int argc, char** argv) {
   bool argbrk = false;
   std::vector<std::string> keys;
   const char* host = "";
-  int32_t port = kt::DEFPORT;
+  const char* pbuf = kc::getenv("KTPORT");
+  int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
   bool bin = false;
   const char* swname = NULL;
@@ -1529,7 +1545,8 @@ static int32_t runmatch(int argc, char** argv) {
   bool argbrk = false;
   std::vector<std::string> keys;
   const char* host = "";
-  int32_t port = kt::DEFPORT;
+  const char* pbuf = kc::getenv("KTPORT");
+  int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
   const char* swname = NULL;
   double swtime = 0;
@@ -1613,7 +1630,8 @@ static int32_t runregex(int argc, char** argv) {
   bool argbrk = false;
   std::vector<std::string> regexes;
   const char* host = "";
-  int32_t port = kt::DEFPORT;
+  const char* pbuf = kc::getenv("KTPORT");
+  int32_t port = pbuf ? (uint32_t)kc::atoi(pbuf) : kt::DEFPORT;
   double tout = 0;
   const char* swname = NULL;
   double swtime = 0;
